@@ -1,0 +1,30 @@
+<div class="tasklist-container">
+  <button mat-button (click)="openCreate()">
+    <mat-icon aria-hidden="false" aria-label="Add">library_add</mat-icon>
+  </button>
+  <div class="tasklist-table-container">
+
+    <table mat-table [dataSource]="tasks" class="tasklist-table"
+           matSort matSortDisableClear matSortDirection="number">
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="note">
+        <th mat-header-cell *matHeaderCellDef>Task</th>
+        <td mat-cell *matCellDef="let row">{{row.task}}</td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-button (click)="deleteTask(row.id)">
+            <mat-icon aria-hidden="false" aria-label="Delete">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
